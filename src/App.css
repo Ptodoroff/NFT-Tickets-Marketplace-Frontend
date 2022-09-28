@@ -55,6 +55,9 @@ footer {
   right: 0;
   text-align: center;
   background-color: peachpuff;
+  border-top: 3px #fff5db solid;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 /* the container, enclosing the Marketplace form */
