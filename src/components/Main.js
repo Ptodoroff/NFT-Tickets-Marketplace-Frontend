@@ -12,7 +12,7 @@ export default function Main() {
             placeholder="Pop Smoke Concert"
           />
           <label htmlFor="eventSymbol">Event Symbol</label>
-          <input type="text" className="eventSymbol" placeholder="PSMK" />
+          <input type="text" className="eventSymbol" placeholder="PSMC" />
           <label htmlFor="ticketSupply">
             Number of tickets available for purchase
           </label>

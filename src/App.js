@@ -42,7 +42,7 @@ function App() {
         <nav>
           <img src={logo} alt="logo" className="nav-logo" />
           <button
-            disabled={connecting}
+            hidden={wallet}
             onClick={() =>
               wallet ? disconnect({ label: wallet.label }) : connect()
             }
@@ -57,7 +57,7 @@ function App() {
       <Main />
       <div className="eventContainer">
         <h4 style={{ textAlign: "center" }}> Creted Events:</h4>
-        <Event />
+        <Event className="eventContainer" />
       </div>
       <Footer />
     </div>

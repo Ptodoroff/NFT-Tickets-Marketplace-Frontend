@@ -48,12 +48,13 @@ nav {
 
 /* ======================== */
 footer {
-  position: fixed;
+  position: relative;
   top: 5;
   left: 0;
   bottom: 0;
   right: 0;
   text-align: center;
+  background-color: peachpuff;
 }
 
 /* the container, enclosing the Marketplace form */
@@ -94,7 +95,7 @@ input,
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 30px;
+  padding-bottom: 15px;
 }
 
 /* card styling */
@@ -113,5 +114,13 @@ input,
 }
 
 .eventContainer {
-  margin: 15px 15px 15px 15px;
+  padding: 10px;
+  margin: 10px 10px 10px 10px;
+  background-color: #b3c1b8;
+  border: 1px solid #b3c1b8;
+  border-radius: 7px;
+}
+
+:root {
+  --account-center-minimized-background: ;
 }
