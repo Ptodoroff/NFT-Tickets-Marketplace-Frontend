@@ -1,64 +1,67 @@
 import "./App.css";
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 
 //components
 import logo from "./components/logo.png";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
 import Event from "./components/Event.js";
-
-//web3Onboard
-import {
-  init,
-  useConnectWallet,
-  useSetChain,
-  useWallets,
-} from "@web3-onboard/react";
-import injectedModule from "@web3-onboard/injected-wallets";
-import walletConnectModule from "@web3-onboard/walletconnect";
-
+import Web3Modal from "web3modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 import { ethers } from "ethers";
 
-//defining the metadata object
-let metadata = {};
+//web3Modal
+let web3Modal;
+const providerOptions = {
+  walletconnect: {
+    package: WalletConnectProvider,
+    options: {
+      rpc: {
+        5: "https://goerli.infura.io/v3/d92c482888c64718a93cfbc3082b73be",
+      },
+    },
+  },
+};
 
 // initializing Onboard with Metamask and WalletConnect
-const walletConnect = walletConnectModule({
-  bridge: "https://bridge.walletconnect.org",
-  qrcodeModalOptions: {
-    mobileLinks: ["metamask"],
-  },
-});
 
-const injected = injectedModule();
+const rpcAPIKey = "d92c482888c64718a93cfbc3082b73be";
+const rpcUrl = "https://goerli.infura.io/v3/d92c482888c64718a93cfbc3082b73be";
 
-init({
-  wallets: [injected, walletConnect],
-  chains: [
-    {
-      id: "0x5",
-      token: "gETH",
-      label: "GOERLI Ethereum",
-      rpcUrl: "https://goerli.infura.io/v3/d92c482888c64718a93cfbc3082b73be",
-    },
-  ],
-});
-
+const marketPlaceABI = require("./ABIs/MarketplaceABI.json");
 let provider;
-
+// the
+let events = [];
 function App() {
-  //web3Onboard
-  const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
-  const connectedWallets = useWallets();
-  const [{ chains, connectedChain, settingChain }, setChain] = useSetChain();
+  //webmodal
 
-  useEffect(() => {
-    if (!wallet?.provider) {
-      provider = null;
-    } else {
-      provider = new ethers.providers.Web3Provider(wallet.provider, "any");
-    }
-  }, [wallet]);
+  async function connect() {
+    web3Modal = new Web3Modal({
+      cacheProvider: false,
+      providerOptions,
+    });
+    const web3ModalProvider = await web3Modal.connect();
+    provider = new ethers.providers.Web3Provider(web3ModalProvider);
+  }
+
+  // =======================================================================
+  //displaying the created events
+  // =======================================================================
+  const [eventName, setEventName] = useState("");
+
+  async function getEvents() {
+    const marketplaceAddress = "0xe8d51d934ad4c4266a977361d33344af88b88fcf";
+    const marketplaceContract = new ethers.Contract(
+      marketplaceAddress,
+      marketPlaceABI,
+      provider
+    );
+
+    let eventFilter = marketplaceContract.filters.EventContractCreated();
+    events = await marketplaceContract.queryFilter(eventFilter);
+    console.log(events);
+    setEventName(events[0].args[1]);
+  }
 
   return (
     <div>
@@ -66,22 +69,20 @@ function App() {
         <nav>
           <img src={logo} alt="logo" className="nav-logo" />
           <button
-            hidden={wallet}
-            onClick={() =>
-              wallet ? disconnect({ label: wallet.label }) : connect()
-            }
+            onClick={connect}
             type="button"
             className="connect btn btn-secondary text-center"
           >
-            {connecting ? "connecting" : wallet ? "disconnect" : "connect"}
+            Connect
           </button>
+          <button onClick={getEvents}>Events</button>
         </nav>
       </header>
 
-      <Main provider={provider} metadata={metadata} />
+      <Main />
       <div className="eventContainer">
-        <h4 style={{ textAlign: "center" }}> Creted Events:</h4>
-        {wallet ? <Event className="eventContainer" /> : ""}
+        <h4 style={{ textAlign: "center" }}> Created Events:</h4>
+        <Event eventName={eventName} className="eventContainer" />
       </div>
       <Footer />
     </div>

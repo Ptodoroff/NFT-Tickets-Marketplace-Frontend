@@ -1,25 +1,59 @@
 import { useMoralisFile, useMoralis } from "react-moralis";
 import { React, useState } from "react";
 import { Moralis } from "moralis";
+import { ethers } from "ethers";
 
-let CidOfUploadedImage;
+const marketPlaceABI = require("../ABIs/MarketplaceABI.json");
 
-export default function Main() {
-  //Moralis
-
-  const { isUploading, moralisFile, saveFile } = useMoralisFile();
+export default function Main(props) {
+  // =======================================================================
+  //useStates
+  // =======================================================================
   const [file, setFile] = useState("");
-  const { authenticate, isAuthenticated, user } = useMoralis();
-  //IPFS Functionality
-  const saveFileIPFS = async (f) => {
-    console.log("FILE", f);
-    const fileIpfs = await saveFile(f.name, file, { saveIPFS: true });
-    await console.log(fileIpfs);
+  const [name, setName] = useState("");
+  const [symbol, setSymbol] = useState("");
+  const [numberOfTickets, setNumberOfTickets] = useState("");
+  const [price, setTicketPrice] = useState("");
+  const [ticketSaleDuration, setticketSaleDuration] = useState("");
+  const [toggle, setToggle] = useState(false);
+  // =======================================================================
+  //Moralis and IPFS
+  // =======================================================================
+  //defining the metadata object
+  const { moralisFile, saveFile } = useMoralisFile();
+  const { authenticate } = useMoralis();
+  let imageCID;
+  //IPFS image upload functionality
+
+  const saveImageIPFS = async (f) => {
+    let moralisFile = await saveFile(f.name, file, {
+      saveIPFS: true,
+      metadata,
+    });
+    imageCID = moralisFile.ipfs();
+    console.log("Image uploaded at:" + imageCID);
+    await console.log(moralisFile);
+
+    setToggle(true);
+  };
+  const handle = () => {
+    saveImageIPFS(file);
   };
 
-  const handleFinal = () => {
-    saveFileIPFS(file);
+  //IPFS event data upload
+  let metadata = {
+    eventName: name,
+    eventSymbol: symbol,
+    numberOfTickets: numberOfTickets,
+    prieInWei: price,
+    ticketSaleDuration: ticketSaleDuration,
   };
+
+  // =======================================================================
+  //Marketplace contract function invocations
+  // =======================================================================
+
+  const createEventFunction = async () => {};
   return (
     <div className="main">
       <div className="App">
@@ -28,21 +62,40 @@ export default function Main() {
           <input
             type="text"
             className="eventName"
+            onChange={(e) => setName(e.target.value)}
             placeholder="Pop Smoke Concert"
           />
           <label htmlFor="eventSymbol">Event Symbol</label>
-          <input type="text" className="eventSymbol" placeholder="PSMC" />
+          <input
+            type="text"
+            className="eventSymbol"
+            placeholder="PSMC"
+            onChange={(e) => setSymbol(e.target.value)}
+          />
           <label htmlFor="ticketSupply">
             Number of tickets available for purchase
           </label>
-          <input type="text" className="ticketSupply" placeholder="500" />
-          <label htmlFor="ticketPrice">Price of the ticket</label>
-          <input type="text" className="ticketPrice" placeholder="0.05 ETH" />
+          <input
+            type="number"
+            className="ticketSupply"
+            placeholder="500"
+            onChange={(e) => setNumberOfTickets(e.target.value)}
+          />
+          <label htmlFor="ticketPrice">
+            Price of the ticket in <span style={{ fontWeight: 650 }}>Wei</span>
+          </label>
+          <input
+            type="number"
+            className="ticketPrice"
+            placeholder="10000"
+            onChange={(e) => setTicketPrice(e.target.value)}
+          />
           <label htmlFor="ticketSaleDuration">Ticket sale duration</label>
           <input
-            type="text"
+            type="number"
             className="ticketSaleDuration"
-            placeholder="Denominted in seconds "
+            placeholder="Denominted in seconds"
+            onChange={(e) => setticketSaleDuration(e.target.value)}
           />
           <label htmlFor="filename">Image</label>
           <input
@@ -57,21 +110,21 @@ export default function Main() {
             >
               1. Allow storing on IPFS
             </button>
-            <button
-              className="createEvent btn-sm ipfsbtn"
-              onClick={handleFinal}
-            >
+            <button className="createEvent btn-sm ipfsbtn" onClick={handle}>
               2. Upload Image to IPFS
             </button>
-            <div>
-              <button className="createEvent ipfsbtn">
-                3. Upload Event Data to IPFS
-              </button>
-            </div>
           </div>
-          <button type="button" className="createEvent">
-            Create Event
-          </button>
+          {toggle ? (
+            <button
+              type="button"
+              className="createEvent"
+              onClick={createEventFunction}
+            >
+              Create Event
+            </button>
+          ) : (
+            " "
+          )}
         </div>
       </div>
     </div>
