@@ -76,7 +76,7 @@ footer {
   color: white;
 }
 
-/* elements in the form */
+/* buttons */
 input,
 .createEvent {
   border: 1px solid #b3c1b8;
@@ -124,6 +124,17 @@ input,
   border-radius: 7px;
 }
 
+/* styling the account-center interface of web3Onboard once the user logs in */
 :root {
   --account-center-minimized-background: ;
+}
+
+/* ipfs button styling */
+
+#ipfs {
+  display: flex;
+}
+
+.ipfsbtn {
+  font-size: smaller;
 }

@@ -1,6 +1,25 @@
-import React from "react";
+import { useMoralisFile, useMoralis } from "react-moralis";
+import { React, useState } from "react";
+import { Moralis } from "moralis";
+
+let CidOfUploadedImage;
 
 export default function Main() {
+  //Moralis
+
+  const { isUploading, moralisFile, saveFile } = useMoralisFile();
+  const [file, setFile] = useState("");
+  const { authenticate, isAuthenticated, user } = useMoralis();
+  //IPFS Functionality
+  const saveFileIPFS = async (f) => {
+    console.log("FILE", f);
+    const fileIpfs = await saveFile(f.name, file, { saveIPFS: true });
+    await console.log(fileIpfs);
+  };
+
+  const handleFinal = () => {
+    saveFileIPFS(file);
+  };
   return (
     <div className="main">
       <div className="App">
@@ -25,7 +44,31 @@ export default function Main() {
             className="ticketSaleDuration"
             placeholder="Denominted in seconds "
           />
-
+          <label htmlFor="filename">Image</label>
+          <input
+            type="file"
+            onChange={(e) => setFile(e.target.files[0])}
+            className="createEvent filename"
+          />
+          <div id="ipfs">
+            <button
+              className="createEvent btn-sm ipfsbtn"
+              onClick={() => authenticate()}
+            >
+              1. Allow storing on IPFS
+            </button>
+            <button
+              className="createEvent btn-sm ipfsbtn"
+              onClick={handleFinal}
+            >
+              2. Upload Image to IPFS
+            </button>
+            <div>
+              <button className="createEvent ipfsbtn">
+                3. Upload Event Data to IPFS
+              </button>
+            </div>
+          </div>
           <button type="button" className="createEvent">
             Create Event
           </button>

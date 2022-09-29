@@ -1,5 +1,6 @@
 import "./App.css";
 import { React, useEffect } from "react";
+
 //components
 import logo from "./components/logo.png";
 import Footer from "./components/Footer";
@@ -77,7 +78,7 @@ function App() {
         </nav>
       </header>
 
-      <Main />
+      <Main provider={provider} metadata={metadata} />
       <div className="eventContainer">
         <h4 style={{ textAlign: "center" }}> Creted Events:</h4>
         {wallet ? <Event className="eventContainer" /> : ""}
