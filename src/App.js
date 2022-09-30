@@ -1,7 +1,9 @@
 import "./App.css";
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
+// =======================================================================
+//components and dependencies
+// =======================================================================
 
-//components
 import logo from "./components/logo.png";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
@@ -10,7 +12,10 @@ import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import { ethers } from "ethers";
 
+// =======================================================================
 //web3Modal
+// =======================================================================
+
 let web3Modal;
 const providerOptions = {
   walletconnect: {
@@ -23,13 +28,19 @@ const providerOptions = {
   },
 };
 
+// =======================================================================
+// contract-related
+// =======================================================================
+
 const marketPlaceABI = require("./ABIs/MarketplaceABI.json");
 let provider;
 let account;
-// the
 let events = [];
+
 function App() {
-  //webmodal
+  // =======================================================================
+  //webmodal initialisation
+  // =======================================================================
 
   async function connect() {
     web3Modal = new Web3Modal({
@@ -47,7 +58,7 @@ function App() {
   }
 
   // =======================================================================
-  //displaying the created events
+  //displaying the created event contracts from the factory contract at address = marketplaceAddress
   // =======================================================================
   const [eventContracts, setEventContracts] = useState([]);
 
@@ -70,13 +81,15 @@ function App() {
       <header>
         <nav>
           <img src={logo} alt="logo" className="nav-logo" />
-          <button
-            onClick={connect}
-            type="button"
-            className="connect btn btn-secondary text-center"
-          >
-            Connect
-          </button>
+          <div id="headerButtonWrapper">
+            <button
+              onClick={connect}
+              type="button"
+              className="connect btn btn-secondary text-center"
+            >
+              Connect
+            </button>
+          </div>
         </nav>
       </header>
 

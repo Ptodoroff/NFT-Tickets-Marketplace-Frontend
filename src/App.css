@@ -8,8 +8,9 @@ body {
 }
 
 .connect {
+  margin-left: 5px;
   width: 160px;
-  height: 35px;
+  height: 38px;
   background-color: #677880 !important;
 }
 
@@ -47,7 +48,6 @@ nav {
 
 /* ======================== */
 footer {
-  position: relative;
   top: 5;
   left: 0;
   bottom: 0;
@@ -90,7 +90,7 @@ input,
   font-size: large;
 }
 
-/* bottom borders */
+/* button borders */
 .main {
   margin-left: 30px;
   margin-right: 30px;
@@ -142,4 +142,11 @@ input,
 
 .ipfsbtn {
   font-size: smaller;
+}
+
+#headerButtonWrapper {
+  width: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

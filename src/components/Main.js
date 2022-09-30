@@ -24,7 +24,10 @@ export default function Main(props) {
   const { moralisFile, saveFile } = useMoralisFile();
   const { authenticate } = useMoralis();
   let imageCID;
+
+  // =======================================================================
   //IPFS image upload functionality
+  // =======================================================================
 
   const saveImageIPFS = async (f) => {
     let moralisFile = await saveFile(f.name, file, {
@@ -41,7 +44,10 @@ export default function Main(props) {
     saveImageIPFS(file);
   };
 
+  // =======================================================================
   //IPFS event data upload
+  // =======================================================================
+
   let metadata = {
     eventName: name,
     eventSymbol: symbol,

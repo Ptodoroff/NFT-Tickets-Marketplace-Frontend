@@ -31,6 +31,7 @@ export default function Event(props) {
           address:{" "}
           <a
             target="_blank"
+            rel="noreferrer"
             href={`https://goerli.etherscan.io/address/${eventContract.args[1]}`}
           >
             {eventContract.args[1]}
@@ -68,7 +69,11 @@ export default function Event(props) {
         </a>
         <br />
         {os ? (
-          <a target="_blank" href="https://testnets.opensea.io/account">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://testnets.opensea.io/account"
+          >
             View on OS
           </a>
         ) : (
