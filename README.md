@@ -1,6 +1,6 @@
 # Read Me
 
-![Project Image]((https://ipfs.moralis.io:2053/ipfs/QmZWew1DBNxbAdzs134Ljsi5mziHNY1YEnzCk1AKRNhhMf)
+![Project Image](https://ipfs.moralis.io:2053/ipfs/QmZWew1DBNxbAdzs134Ljsi5mziHNY1YEnzCk1AKRNhhMf)
 
 > Todoroff Events Co. - a decentralised application to create events and buy tickets.
 
@@ -80,7 +80,7 @@ Once the Dapp is opened, click the " Connect " button and authorise the webpage 
 
 ## Author Info
 
-- LinkedIn - [Petar Todorov]((https://www.linkedin.com/in/petargtodorov/)
+- LinkedIn - [Petar Todorov](https://www.linkedin.com/in/petargtodorov/)
 - Blog - [0xTodorov](https://0xtodorov.hashnode.dev/)
 
 [Back To The Top](#read-me-template)
