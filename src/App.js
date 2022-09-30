@@ -72,7 +72,7 @@ function App() {
 
     let eventFilter = marketplaceContract.filters.EventContractCreated();
     events = await marketplaceContract.queryFilter(eventFilter);
-    console.log(events);
+
     setEventContracts(events);
   }
 

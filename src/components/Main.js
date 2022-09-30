@@ -36,7 +36,8 @@ export default function Main(props) {
     });
     imageCID = moralisFile.ipfs();
     console.log("Image uploaded at:" + imageCID);
-    await console.log(moralisFile);
+    await console.log("Image metadata: ↓↓↓↓");
+    await console.log(moralisFile._metadata);
 
     setToggle(true);
   };
