@@ -63,7 +63,7 @@ function App() {
   const [eventContracts, setEventContracts] = useState([]);
 
   async function getEvents() {
-    const marketplaceAddress = "0xF71229cE7B142b839E3BB7fF47a2A9445206D559";
+    const marketplaceAddress = "0xb6c05e5e2e78f2e90419eef2b651a05cab4a1c50";
     const marketplaceContract = new ethers.Contract(
       marketplaceAddress,
       marketPlaceABI,
