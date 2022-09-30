@@ -50,7 +50,7 @@ function App() {
   const [eventName, setEventName] = useState("");
 
   async function getEvents() {
-    const marketplaceAddress = "0xe8d51d934ad4c4266a977361d33344af88b88fcf";
+    const marketplaceAddress = "0x3DD5057C940596b631CE4FeBF6Dbf6ecB1c68A0E";
     const marketplaceContract = new ethers.Contract(
       marketplaceAddress,
       marketPlaceABI,
@@ -60,7 +60,7 @@ function App() {
     let eventFilter = marketplaceContract.filters.EventContractCreated();
     events = await marketplaceContract.queryFilter(eventFilter);
     console.log(events);
-    setEventName(events[0].args[1]);
+    setEventName(events);
   }
 
   return (
@@ -80,9 +80,13 @@ function App() {
       </header>
 
       <Main />
-      <div className="eventContainer">
+      <div className="eventDisplay">
         <h4 style={{ textAlign: "center" }}> Created Events:</h4>
-        <Event eventName={eventName} className="eventContainer" />
+        <div id="eventContainer">
+          {events.map((eventContract, i) => (
+            <Event eventContract={eventContract} key={i} className="" />
+          ))}
+        </div>
       </div>
       <Footer />
     </div>

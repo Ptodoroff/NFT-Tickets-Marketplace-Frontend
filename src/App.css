@@ -104,6 +104,7 @@ input,
 /* card styling */
 .card {
   background-color: #b3c1b8 !important;
+  margin: 15px;
 }
 
 .card-button {
@@ -116,12 +117,16 @@ input,
   height: 80px;
 }
 
-.eventContainer {
+.eventDisplay {
   padding: 10px;
   margin: 10px 10px 10px 10px;
   background-color: #b3c1b8;
   border: 1px solid #b3c1b8;
   border-radius: 7px;
+}
+
+#eventContainer {
+  display: flex;
 }
 
 /* styling the account-center interface of web3Onboard once the user logs in */
