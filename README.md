@@ -1,6 +1,6 @@
 # Read Me
 
-![Project Image](https://ipfs.moralis.io:2053/ipfs/QmZWew1DBNxbAdzs134Ljsi5mziHNY1YEnzCk1AKRNhhMf)
+![Project Image](https://ipfs.moralis.io:2053/ipfs/Qmc8J3Fvje1UCSgNymJW5phnZsPeCSwEXtLomaMY8hS3D9)
 
 > Todoroff Events Co. - a decentralised application to create events and buy tickets.
 
