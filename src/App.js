@@ -80,7 +80,7 @@ function App() {
         </nav>
       </header>
 
-      <Main provider={provider} />
+      <Main provider={provider} getEvents={getEvents} />
       <div className="eventDisplay">
         <h4 style={{ textAlign: "center" }}> Created Events:</h4>
         <div id="eventContainer">

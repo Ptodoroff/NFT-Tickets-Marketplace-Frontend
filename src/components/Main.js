@@ -62,13 +62,16 @@ export default function Main(props) {
       marketPlaceABI,
       provider.getSigner()
     );
-    await marketplaceContract.createEventContract(
+    let transaction = await marketplaceContract.createEventContract(
       numberOfTickets,
       price,
       name,
       symbol,
       ticketSaleDuration
     );
+
+    await transaction.wait();
+    await props.getEvents();
   };
   return (
     <div className="main">

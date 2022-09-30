@@ -50,6 +50,15 @@ export default function Event(props) {
           Ticket sale duration:{" "}
           {Math.floor(Number(eventContract.args[5]) / 60).toFixed(2)} minutes
         </p>
+
+        <label>Price</label>
+        <br />
+        <input
+          type="number"
+          className="ticketSupply"
+          onChange={(e) => setPrice(e.target.value)}
+          placeholder="Price must match"
+        />
         <a
           href="#"
           className="btn btn-primary small btn-sm card-button"
@@ -57,11 +66,7 @@ export default function Event(props) {
         >
           Buy ticket
         </a>
-        <input
-          type="number"
-          className="ticketSupply"
-          onChange={(e) => setPrice(e.target.value)}
-        />
+        <br />
         {os ? (
           <a target="_blank" href="https://testnets.opensea.io/account">
             View on OS
