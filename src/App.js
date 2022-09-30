@@ -87,7 +87,7 @@ function App() {
               type="button"
               className="connect btn btn-secondary text-center"
             >
-              Connect
+              {account ? "Connected" : "Connect"}
             </button>
           </div>
         </nav>
