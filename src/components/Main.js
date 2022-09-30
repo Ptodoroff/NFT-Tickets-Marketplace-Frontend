@@ -16,6 +16,7 @@ export default function Main(props) {
   const [price, setTicketPrice] = useState("");
   const [ticketSaleDuration, setticketSaleDuration] = useState("");
   const [toggle, setToggle] = useState(false);
+
   // =======================================================================
   //Moralis and IPFS
   // =======================================================================
@@ -53,7 +54,22 @@ export default function Main(props) {
   //Marketplace contract function invocations
   // =======================================================================
 
-  const createEventFunction = async () => {};
+  const createEventFunction = async () => {
+    let provider = props.provider;
+    const marketplaceAddress = "0xF71229cE7B142b839E3BB7fF47a2A9445206D559";
+    const marketplaceContract = new ethers.Contract(
+      marketplaceAddress,
+      marketPlaceABI,
+      provider.getSigner()
+    );
+    await marketplaceContract.createEventContract(
+      numberOfTickets,
+      price,
+      name,
+      symbol,
+      ticketSaleDuration
+    );
+  };
   return (
     <div className="main">
       <div className="App">

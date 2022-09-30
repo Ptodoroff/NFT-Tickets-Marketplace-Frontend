@@ -1,22 +1,57 @@
-import React from "react";
-import logo from "./logo.png";
+import { React, useState } from "react";
 import { ethers } from "ethers";
 
-const marketPlaceABI = require("../ABIs/MarketplaceABI.json");
+const eventContractABI = require("../ABIs/EventContractABI.json");
 
 export default function Event(props) {
+  const [price, setPrice] = useState("");
+  const [os, toggleOs] = useState(false);
+
+  let eventContract = props.eventContract;
+  let provider = props.provider;
+
+  async function buyTickets() {
+    const eventContractAddress = eventContract.args[1];
+    const eventContractInstance = new ethers.Contract(
+      eventContractAddress,
+      eventContractABI,
+      provider.getSigner()
+    );
+    let tx = await eventContractInstance.mint({ value: price });
+    await tx.wait();
+    await toggleOs(true);
+  }
   return (
-    <div className="card" style={{ width: "10rem" }}>
-      <img className="card-img-top" src={logo} alt="Card image cap" />
+    <div className="card" style={{ width: "20rem" }}>
       <div className="card-body">
-        <h5 className="card-title">{props.eventName}</h5>
+        <h5 className="card-title">{eventContract.args[0]}</h5>
+        <p className="card-text"> address: {eventContract.args[1]} </p>
         <p className="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {" "}
+          Total tickets for sale: {Number(eventContract.args[6])}{" "}
         </p>
-        <a href="#" className="btn btn-primary small btn-sm card-button">
-          Go somewhere
+        <p className="card-text">
+          {" "}
+          Price: {Number(eventContract.args[4])} Wei{" "}
+        </p>
+        <p className="card-text">
+          {" "}
+          Ticket sale duration:{" "}
+          {Math.floor(Number(eventContract.args[5]) / 60).toFixed(2)} minutes
+        </p>
+        <a
+          href="#"
+          className="btn btn-primary small btn-sm card-button"
+          onClick={buyTickets}
+        >
+          Buy ticket
         </a>
+        <input
+          type="number"
+          className="ticketSupply"
+          onChange={(e) => setPrice(e.target.value)}
+        />
+        {os ? <a href="https://testnets.opensea.io/account">View on OS</a> : ""}
       </div>
     </div>
   );

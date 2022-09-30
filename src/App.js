@@ -23,13 +23,9 @@ const providerOptions = {
   },
 };
 
-// initializing Onboard with Metamask and WalletConnect
-
-const rpcAPIKey = "d92c482888c64718a93cfbc3082b73be";
-const rpcUrl = "https://goerli.infura.io/v3/d92c482888c64718a93cfbc3082b73be";
-
 const marketPlaceABI = require("./ABIs/MarketplaceABI.json");
 let provider;
+let account;
 // the
 let events = [];
 function App() {
@@ -39,18 +35,24 @@ function App() {
     web3Modal = new Web3Modal({
       cacheProvider: false,
       providerOptions,
+      theme: {
+        background: "rgb(179, 193, 184)",
+        hover: "rgb(255, 245, 219)",
+      },
     });
     const web3ModalProvider = await web3Modal.connect();
     provider = new ethers.providers.Web3Provider(web3ModalProvider);
+    account = (await provider.listAccounts())[0];
+    getEvents();
   }
 
   // =======================================================================
   //displaying the created events
   // =======================================================================
-  const [eventName, setEventName] = useState("");
+  const [eventContracts, setEventContracts] = useState([]);
 
   async function getEvents() {
-    const marketplaceAddress = "0x3DD5057C940596b631CE4FeBF6Dbf6ecB1c68A0E";
+    const marketplaceAddress = "0xF71229cE7B142b839E3BB7fF47a2A9445206D559";
     const marketplaceContract = new ethers.Contract(
       marketplaceAddress,
       marketPlaceABI,
@@ -60,7 +62,7 @@ function App() {
     let eventFilter = marketplaceContract.filters.EventContractCreated();
     events = await marketplaceContract.queryFilter(eventFilter);
     console.log(events);
-    setEventName(events);
+    setEventContracts(events);
   }
 
   return (
@@ -75,16 +77,21 @@ function App() {
           >
             Connect
           </button>
-          <button onClick={getEvents}>Events</button>
         </nav>
       </header>
 
-      <Main />
+      <Main provider={provider} />
       <div className="eventDisplay">
         <h4 style={{ textAlign: "center" }}> Created Events:</h4>
         <div id="eventContainer">
-          {events.map((eventContract, i) => (
-            <Event eventContract={eventContract} key={i} className="" />
+          {eventContracts.map((eventContract, i) => (
+            <Event
+              account={account}
+              provider={provider}
+              eventContract={eventContract}
+              key={i}
+              className=""
+            />
           ))}
         </div>
       </div>
