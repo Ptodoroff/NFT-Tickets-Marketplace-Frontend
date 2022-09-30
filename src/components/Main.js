@@ -110,7 +110,7 @@ export default function Main(props) {
           <input
             type="number"
             className="ticketSaleDuration"
-            placeholder="Denominted in seconds"
+            placeholder="in seconds"
             onChange={(e) => setticketSaleDuration(e.target.value)}
           />
           <label htmlFor="filename">Image</label>

@@ -81,6 +81,7 @@ input,
   border: 1px solid #b3c1b8;
   border-radius: 7px;
   margin: 5px;
+  text-align: center;
 }
 
 .createEvent {

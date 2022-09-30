@@ -9,6 +9,7 @@ export default function Event(props) {
 
   let eventContract = props.eventContract;
   let provider = props.provider;
+  let contractId = props.index;
 
   async function buyTickets() {
     const eventContractAddress = eventContract.args[1];
@@ -24,8 +25,18 @@ export default function Event(props) {
   return (
     <div className="card" style={{ width: "20rem" }}>
       <div className="card-body">
-        <h5 className="card-title">{eventContract.args[0]}</h5>
-        <p className="card-text"> address: {eventContract.args[1]} </p>
+        <h6 className="card-title">{eventContract.args[0]}</h6>
+        <p className="card-text">
+          {" "}
+          address:{" "}
+          <a
+            target="_blank"
+            href={`https://goerli.etherscan.io/address/${eventContract.args[1]}`}
+          >
+            {eventContract.args[1]}
+          </a>
+        </p>
+        <p className="card-text"> contract ID: {contractId} </p>
         <p className="card-text">
           {" "}
           Total tickets for sale: {Number(eventContract.args[6])}{" "}
@@ -51,7 +62,13 @@ export default function Event(props) {
           className="ticketSupply"
           onChange={(e) => setPrice(e.target.value)}
         />
-        {os ? <a href="https://testnets.opensea.io/account">View on OS</a> : ""}
+        {os ? (
+          <a target="_blank" href="https://testnets.opensea.io/account">
+            View on OS
+          </a>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

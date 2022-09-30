@@ -86,6 +86,7 @@ function App() {
         <div id="eventContainer">
           {eventContracts.map((eventContract, i) => (
             <Event
+              index={i}
               account={account}
               provider={provider}
               eventContract={eventContract}
