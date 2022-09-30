@@ -58,9 +58,9 @@ This repository represents the frontend of the event management application. The
 
 If you prefer cloning the repository onto your local machine, run the following commands:
 
-`git clone https://github.com/Ptodoroff/NFT-Tickets-Marketplace-Frontend `\
-run `npm install`\
-Navigate to the `src` folder and run `npm start`\
+`git clone https://github.com/Ptodoroff/NFT-Tickets-Marketplace-Frontend `
+run `npm install`
+Navigate to the `src` folder and run `npm start`
 
 **make sure that you use react-scripts version 4.0.3, react-dom version 17.0.0, react version 17.0.0**. This is required by the WalletConnect module of web3Modal, otherwise the application will not work properly.\
 
@@ -74,13 +74,13 @@ DISCLAIMER: Although it is not a recommended practice, I have not masked the API
 
 Once the Dapp is opened, click the `Connect` button and authorise your wallet. Make sure that you are connected to the Goerli testnet by taking a quick glance at your wallet extension's dashboard. After that, the usage cycle could be summarised as follows:
 
-1. Input the arguments for your event - name, symbol, ticket price, sale duration, ticket supply , etc.\
-2. Select an image or any other file that could be related to your event.\
-3. Authorise your wallet to use the IPFS uploading functionality by clicking ot `Allow storing on IPFS`.\
-4. Click `Upload Image to IPFS`.\
-5. A `Create event` button is displayed. Clicking on it will deploy an instance of of the event contract with the parameters that were passed in the input boxes.\
-6. After the transaction is mined, a card will appear that contains a link to the contract, information about it and a `Buy tickets` button\
-7. Click the `Buy tickets` button after inputting the exact price of a ticket for this event. The price is denominated in **wei**.\
+1. Input the arguments for your event - name, symbol, ticket price, sale duration, ticket supply , etc.
+2. Select an image or any other file that could be related to your event.
+3. Authorise your wallet to use the IPFS uploading functionality by clicking ot `Allow storing on IPFS`.
+4. Click `Upload Image to IPFS`.
+5. A `Create event` button is displayed. Clicking on it will deploy an instance of of the event contract with the parameters that were passed in the input boxes.
+6. After the transaction is mined, a card will appear that contains a link to the contract, information about it and a `Buy tickets` button
+7. Click the `Buy tickets` button after inputting the exact price of a ticket for this event. The price is denominated in **wei**.
    **Note** - the transaction will revert if it is sent after the ticket sale period has ended or if the input price does not match the one of the ticket for the selected event. When the transaction is confirmed , a link to view the account's NFTs on opensea and the newly minted ticket ( may require Opensea authentication if not used before)
 
 ---
