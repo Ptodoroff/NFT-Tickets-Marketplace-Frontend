@@ -22,7 +22,7 @@ export default function Main(props) {
   // =======================================================================
   //defining the metadata object
   const { moralisFile, saveFile } = useMoralisFile();
-  const { authenticate } = useMoralis();
+  const { authenticate, isInitialized } = useMoralis();
   let imageCID;
 
   // =======================================================================
@@ -34,7 +34,7 @@ export default function Main(props) {
       saveIPFS: true,
       metadata,
     });
-    imageCID = moralisFile.ipfs();
+    imageCID = await moralisFile.ipfs();
     console.log("Image uploaded at:" + imageCID);
     await console.log("Image metadata: ↓↓↓↓");
     await console.log(moralisFile._metadata);

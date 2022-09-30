@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Read Me
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Project Image]((https://ipfs.moralis.io:2053/ipfs/QmZWew1DBNxbAdzs134Ljsi5mziHNY1YEnzCk1AKRNhhMf)
 
-## Available Scripts
+> Todoroff Events Co. - a decentralised application to create events and buy tickets.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Description](#description)
+- [Netlify Link](#Netlify)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [How To Use](#how-to-use)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Description
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This repository represents the frontend of the event management application. The webpage is used to interact with an already deployed Marketplace (factory) contract, sitting at: **0xB6c05e5E2E78f2e90419eef2b651A05Cab4a1C50** on the Goerli testnet. The dapp has the following functionalities implemented:
 
-### `npm run build`
+- **Creating an event** (the button for the event creation appears after the user has: **1.** allowed storing on IPFS (syntactic sugar for "authentication") **2.** Uploaded an image to IPFS
+- **Uploading an image with the metadata, which is input by the user**
+- **Creating an event contract and deploying it on the Goerli Testnet**
+- **Allowing any user to select an event and buy a ticket for it during the sale period, for the designated price**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Netlify
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- You can save time and computational resources by accessing the Dapp directly at https://willowy-sorbet-ca8616.netlify.app/ Make sure to:
+- Have test Goerli ether. You can get some at: [goerlifaucet.com](https://goerlifaucet.com/)
+- Connect your wallet to the dapp and then **double check that it is connected to the Goerli testnet by taking a look at your wallet's dashboard!**
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Technologies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- React
+- Javascript
+- Moralis
+- Web3Modal
+- IPFS
+- ethers.js
+- HTML
+- CSS
+- Netlify
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+[Back To The Top](#read-me)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+#### Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+If you prefer cloning the repository onto your local machine, run the following commands:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`git clone https://github.com/Ptodoroff/NFT-Tickets-Marketplace-Frontend `
+run `npm install`
+run `npm start`
 
-### Code Splitting
+**make sure that you use react-scripts version 4.0.3, react-dom version 17.0.0, react version 17.0.0**. This is required by the WalletConnect module of web3Modal, otherwise it will not work properly
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## How To Use
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Once the Dapp is opened, click the " Connect " button and authorise the webpage to use your connected wallet. Make sure that you are connected to the Goerli testnet by taking a quick glance at the your wallet extension dashboard. After that, the usage cycle could be summarised as follows:
 
-### Making a Progressive Web App
+1. Input the arguments for your event - name, symbol, ticket price, sale duration, ticket supply , etc.
+2. Select an image or any other file that could be related to your event
+3. Authorise your wallet to use the IPFS uploading functionality by clicking ot `Allow storing on IPFS`.
+4. Click `Upload Image to IPFS`.
+5. A `Create event` button is displayed. Clicking on it will deploy an instance of of the event contract with the parameters that were passed in the input boxes.
+6. After the transaction is mined, a card will appear that contains a link to the contract, information about it and a `Buy tickets` button
+7. Click the `Buy tickets` button after inputting the exact price of a ticket for this event. The price is denominated in **wei**  
+   **Note** - the transaction will revert if it is sent after the ticket sale period has ended or if the input price does not match the one of the ticket for the selected event
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Author Info
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- LinkedIn - [Petar Todorov]((https://www.linkedin.com/in/petargtodorov/)
+- Blog - [0xTodorov](https://0xtodorov.hashnode.dev/)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Back To The Top](#read-me-template)
