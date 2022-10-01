@@ -18,7 +18,7 @@
 
 ## Description
 
-This repository represents the frontend of the event management application. The webpage is user focused, not event organiser-focused, and is used to interact with an already deployed Marketplace (factory) contract, sitting at: **0xB6c05e5E2E78f2e90419eef2b651A05Cab4a1C50** on the Goerli testnet. If you are an event organiser and want to draw a winner or withdraw the proceeds from the ticket sale of your event, please follow the steps to generate a UI from the project's contracts repository (outlined in the README.md file) and you could execute these functions.\
+This repository represents the frontend of the event management application. The webpage is user focused, not event organiser-focused, and is used to interact with an already deployed Marketplace (factory) contract, sitting at: **0x8e5c9A24053288CcC5ead816864c45403D9804d2** on the Goerli testnet. If you are an event organiser and want to draw a winner or withdraw the proceeds from the ticket sale of your event, please follow the steps to generate a UI from the project's contracts repository (outlined in the README.md file) and you could execute these functions.\
 
 The dapp has the following functionalities implemented:\
 
@@ -33,7 +33,7 @@ The dapp has the following functionalities implemented:\
 
 ## Netlify
 
-- You can save time and computational resources by accessing the Dapp directly at https://willowy-sorbet-ca8616.netlify.app/ Make sure to:\
+- You can save time and computational resources by accessing the Dapp directly at https://lustrous-maamoul-d2a084.netlify.app// Make sure to:\
 - Have Goerli test ether. You can get some at: [goerlifaucet.com](https://goerlifaucet.com/)\
 - Connect your wallet to the dapp and then **double check that it is connected to the Goerli testnet by taking a look at your wallet's dashboard!**\
 
