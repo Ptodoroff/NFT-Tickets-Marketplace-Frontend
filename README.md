@@ -23,8 +23,10 @@ This repository represents the frontend of the event management application. The
 The dapp has the following functionalities implemented:
 
 - **Creating an event** (the button for the event creation appears after the user has:
+
   **1.** allowed storing on IPFS (syntactic sugar that I use as a synonym for "authentication to use Moralis' IPFS functionality")\
   **2.** Uploaded an image to IPFS
+
 - **Uploading an image with the metadata, which is input by the user**
 - **Creating an event contract and deploying it on the Goerli Testnet**
 - **Allowing any user to select an event and buy a ticket for it during the sale period, for the designated price**
