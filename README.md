@@ -22,7 +22,8 @@ This repository represents the frontend of the event management application. The
 
 The dapp has the following functionalities implemented:
 
-- **Creating an event** (the button for the event creation appears after the user has:\ **1.** allowed storing on IPFS (syntactic sugar that I use as a synonym for "authentication to use Moralis' IPFS functionality")\
+- **Creating an event** (the button for the event creation appears after the user has:
+  **1.** allowed storing on IPFS (syntactic sugar that I use as a synonym for "authentication to use Moralis' IPFS functionality")\
   **2.** Uploaded an image to IPFS
 - **Uploading an image with the metadata, which is input by the user**
 - **Creating an event contract and deploying it on the Goerli Testnet**
@@ -66,7 +67,8 @@ Navigate to the `src` folder and run `npm start`
 
 **make sure that you use react-scripts version 4.0.3, react-dom version 17.0.0, react version 17.0.0**. This is required by the WalletConnect module of Web3Modal, otherwise the application will not work properly.\
 
-**Important:** `Request has been blocked by CORS policy` may sometimes appear as an error. This can easily be solved by using an Chrome extension like [Cross Domain - CORS] (https://chrome.google.com/webstore/detail/cross-domain-cors/mjhpgnbimicffchbodmgfnemoghjakai)
+**Important:** `Request has been blocked by CORS policy` may sometimes appear as an error. This can easily be solved by using an Chrome extension like
+[Cross Domain - CORS](https://chrome.google.com/webstore/detail/cross-domain-cors/mjhpgnbimicffchbodmgfnemoghjakai)
 
 - DISCLAIMER: Although it is not a recommended practice, I have not masked the API key by Infura, nor the credentials required by Moralis in a .env file, in order to save the designated users/recruiters/clients time and aid the entire installation process.
 
